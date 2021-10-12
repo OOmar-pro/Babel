@@ -1,0 +1,22 @@
+{
+    "sources": [
+        {
+            "id": "RS",
+            "name": "Reaperscan",
+            "img": "https://reaperscans.fr/wp-content/uploads/2021/06/ms-icon-310x310-1.png",
+            "url": "https://reaperscans.fr/"
+        },
+        {
+            "id": "LSV",
+            "name": "LelScanVf",
+            "img": "https://lelscan-vf.co/uploads/logo.png",
+            "url": "https://www.lelscan-vf.co/"
+        },
+        {
+            "id": "LCS",
+            "name": "Le cercle du scan",
+            "img": "https://lel.lecercleduscan.com/assets/images/logo_footer_night.png",
+            "url": "https://lel.lecercleduscan.com/"
+        }
+    ]
+}
