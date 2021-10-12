@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from starlette.responses import HTMLResponse
+from fastapi import HTTPException
 
 from utils.utils import formatToUrl, getSource
 
@@ -29,7 +29,7 @@ def getManga(title):
     url = RS['url_manga'] + title
     r = requests.get(url)
     if(r.status_code == 404):
-        raise HTMLResponse(status_code=404, detail="Manga not found")
+        raise HTTPException(status_code=404, detail="Manga not found")
 
     html = BeautifulSoup(r.text, 'html.parser')
 
@@ -59,11 +59,11 @@ def getManga(title):
     return res
 
 def getChapter(title, number):
-    slug = formatToUrl(title + " " + "16")
+    slug = formatToUrl(title + " " + number)
     url = RS['url'] + slug
     r = requests.get(url)
     if(r.status_code == 404):
-        raise HTMLResponse(status_code=404, detail="Chapter not found")
+        raise HTTPException(status_code=404, detail="Chapter not found")
 
     html = BeautifulSoup(r.text, 'html.parser')
 

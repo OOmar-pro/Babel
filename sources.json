@@ -18,7 +18,9 @@
             "id": "LCS",
             "name": "Le cercle du scan",
             "img": "https://lel.lecercleduscan.com/assets/images/logo_footer_night.png",
-            "url": "https://lel.lecercleduscan.com/"
+            "url": "https://lel.lecercleduscan.com/",
+            "url_latests": "https://lel.lecercleduscan.com/",
+            "url_manga": "https://lel.lecercleduscan.com/series/"
         }
     ]
 }
