@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from starlette.responses import HTMLResponse
 
 from utils.utils import formatToUrl, getSource
 
@@ -27,6 +28,9 @@ def getManga(title):
     title = formatToUrl(title)
     url = RS['url_manga'] + title
     r = requests.get(url)
+    if(r.status_code == 404):
+        raise HTMLResponse(status_code=404, detail="Manga not found")
+
     html = BeautifulSoup(r.text, 'html.parser')
 
     manga = html.find('div', class_='main-info')
@@ -44,7 +48,7 @@ def getManga(title):
     res = {
         "metadata": {
             "img": manga.find('div', class_='info-left').find('img')['src'],
-            "title": title,
+            "title": manga.find('h1', attrs={"itemprop": "name"}).text,
             "description": manga.find('div', attrs={"itemprop": "description"}).text,
             "rating": manga.find('div', attrs={"itemprop": "ratingValue"}).text,
         },
@@ -54,3 +58,21 @@ def getManga(title):
 
     return res
 
+def getChapter(title, number):
+    slug = formatToUrl(title + " " + "16")
+    url = RS['url'] + slug
+    r = requests.get(url)
+    if(r.status_code == 404):
+        raise HTMLResponse(status_code=404, detail="Chapter not found")
+
+    html = BeautifulSoup(r.text, 'html.parser')
+
+    pages_html = html.find('div', id='readerarea').find_all('img')
+
+    pages = []
+    i = 0
+    for page in pages_html:
+        i += 1
+        pages.append(page['src'])
+
+    return pages

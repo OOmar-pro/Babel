@@ -41,7 +41,7 @@ async def latests(source_id):
     return parser.getLatests()
 
 @app.get('/{source_id}/{manga_title}')
-async def source(source_id,manga_title):
+async def manga(source_id,manga_title):
     source = utils.getSource(source_id)
     if(source is None):
         raise HTTPException(status_code=404, detail="Source not found.")
@@ -49,3 +49,13 @@ async def source(source_id,manga_title):
     parser = importlib.import_module("sources.{}".format(source['id']))
 
     return parser.getManga(manga_title)
+
+@app.get('/{source_id}/{manga_title}/{chapter_number}')
+async def chapter(source_id, manga_title, chapter_number):
+    source = utils.getSource(source_id)
+    if(source is None):
+        raise HTTPException(status_code=404, detail="Source not found.")
+    
+    parser = importlib.import_module("sources.{}".format(source['id']))
+
+    return parser.getChapter(manga_title, chapter_number)
