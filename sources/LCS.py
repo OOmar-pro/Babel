@@ -1,0 +1,2 @@
+def getLatests():
+    return "lcs"
