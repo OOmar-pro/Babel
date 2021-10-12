@@ -9,3 +9,7 @@ def getSource(id):
         if source['id'] == id:
             return source
     return None
+
+def formatToUrl(str):
+    s = "-".join(str.split(' '))
+    return s.lower()
