@@ -26,7 +26,7 @@ def getLatests():
 
 def getManga(title):
     title = formatToUrl(title)
-    url = RS['url_manga'] + title
+    url = RS['url_manga'].format(title)
     r = requests.get(url)
     if(r.status_code == 404):
         raise HTTPException(status_code=404, detail="Manga not found")
@@ -60,7 +60,7 @@ def getManga(title):
 
 def getChapter(title, number):
     slug = formatToUrl(title + " " + number)
-    url = RS['url'] + slug
+    url = RS['url_chapter'].format(slug)
     r = requests.get(url)
     if(r.status_code == 404):
         raise HTTPException(status_code=404, detail="Chapter not found")

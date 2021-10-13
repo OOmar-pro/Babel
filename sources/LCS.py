@@ -1,8 +1,10 @@
 import requests
 import re
+import json
 
 from bs4 import BeautifulSoup
 from fastapi import HTTPException
+from sources import LSV
 from utils.utils import formatToUrl, getSource
 
 LCS = getSource('LCS')
@@ -26,7 +28,7 @@ def getLatests():
 
 def getManga(title):
     title = formatToUrl(title)
-    url = LCS['url_manga'] + title
+    url = LCS['url_manga'].format(title)
     r = requests.get(url)
     
     if(r.status_code == 404):
@@ -59,7 +61,21 @@ def getManga(title):
     return res
 
 def getChapter(title, number):
-    return "NOT DONE"
+    url = LCS['url_chapter'].format(formatToUrl(title), number)
+    r = requests.get(url)
+    if(r.status_code == 404):
+        raise HTTPException(status_code=404, detail="Chapter not found")
+
+    html = BeautifulSoup(r.text, 'html.parser')
+    pages_html = extractJson(html.text)
+
+    pages = []
+    i = 0
+    for page in pages_html:
+        i += 1
+        pages.append(page['url'])
+
+    return pages
 
 def extractNumberFromText(text):
     regex = r"Chapitre (\d+)"
@@ -74,3 +90,11 @@ def extractDateFromText(text):
     if(len(matches) == 0):
         return 'Hier'
     return matches[0]
+
+def extractJson(str):
+   regex = r"var pages = (.+);"
+
+   matches = re.findall(regex, str)
+   res = json.loads(matches[0])
+
+   return res
