@@ -41,14 +41,14 @@ async def latests(source_id):
     return parser.getLatests()
 
 @app.get('/{source_id}/search/')
-async def latests(source_id):
+async def search(source_id, query):
     source = utils.getSource(source_id)
     if(source is None):
         raise HTTPException(status_code=404, detail="Source not found.")
     
     parser = importlib.import_module("sources.{}".format(source['id']))
 
-    return parser.search()
+    return parser.search(query)
 
 @app.get('/{source_id}/{manga_title}')
 async def manga(source_id,manga_title):
