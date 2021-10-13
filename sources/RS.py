@@ -76,3 +76,6 @@ def getChapter(title, number):
         pages.append(page['src'])
 
     return pages
+
+def search(query):
+    
