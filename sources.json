@@ -23,7 +23,8 @@
             "url": "https://lel.lecercleduscan.com/",
             "url_latests": "https://lel.lecercleduscan.com/",
             "url_manga": "https://lel.lecercleduscan.com/series/{}",
-            "url_chapter": "https://lel.lecercleduscan.com/read/{}/fr/0/{}/page/1"
+            "url_chapter": "https://lel.lecercleduscan.com/read/{}/fr/0/{}/page/1",
+            "url_search": "https://lel.lecercleduscan.com/search/"
         }
     ]
 }

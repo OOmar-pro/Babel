@@ -77,6 +77,23 @@ def getChapter(title, number):
 
     return pages
 
+def search(query):
+    r = requests.post(LCS['url_search'], data={"search": query})
+    html = BeautifulSoup(r.text, 'html.parser')
+
+    mangas = html.find('div', class_='list').find_all('div', class_='group')
+    
+    res = []
+    for item in mangas:
+        res.append({
+            "title": item.find('div', class_='title').find('a')['title'],
+            "slug": formatToUrl(item.find('div', class_='title').find('a')['title']),
+            "url": item.find('div', class_='title').find('a')['href'],
+            "img": "" # TODO recuperer sur la page d'apres
+        })
+
+    return res
+
 def extractNumberFromText(text):
     regex = r"Chapitre (\d+)"
     matches = re.findall(regex, text)
