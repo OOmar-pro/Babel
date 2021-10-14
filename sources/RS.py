@@ -78,4 +78,19 @@ def getChapter(title, number):
     return pages
 
 def search(query):
+    r = requests.get(RS['url_search'], params={"s": query})
+    html = BeautifulSoup(r.text, 'html.parser')
+
+    mangas = html.find_all('div', class_='bs')
     
+    res = []
+    for item in mangas:
+        res.append({
+            "title": item.find('a')['title'],
+            "slug": formatToUrl(item.find('a')['title']),
+            "url": item.find('a')['href'],
+            "img": item.find('img')['src'],
+            "rating": item.find('div', class_='numscore').text
+        })
+
+    return res

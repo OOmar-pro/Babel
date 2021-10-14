@@ -8,7 +8,7 @@
             "url_latests": "https://reaperscans.fr/manga/?order=update",
             "url_manga": "https://reaperscans.fr/manga/{}",
             "url_chapter": "https://reaperscans.fr/{}",
-            "url_search": "https://reaperscans.fr/?s=fr"
+            "url_search": "https://reaperscans.fr/"
         },
         {
             "id": "LSV",
