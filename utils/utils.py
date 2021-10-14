@@ -12,4 +12,7 @@ def getSource(id):
 
 def formatToUrl(str):
     s = "-".join(str.split(' '))
-    return s.lower()
+    s = s.lower()
+    s = s.replace('.', '')
+
+    return s

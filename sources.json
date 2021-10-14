@@ -14,7 +14,9 @@
             "id": "LSV",
             "name": "LelScanVf",
             "img": "https://lelscan-vf.co/uploads/logo.png",
-            "url": "https://www.lelscan-vf.co/"
+            "url": "https://www.lelscan-vf.co/",
+            "url_latests": "https://www.lelscan-vf.co/",
+            "url_manga": "https://www.lelscan-vf.co/manga/{}"
         },
         {
             "id": "LCS",

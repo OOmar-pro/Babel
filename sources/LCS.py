@@ -4,7 +4,6 @@ import json
 
 from bs4 import BeautifulSoup
 from fastapi import HTTPException
-from sources import LSV
 from utils.utils import formatToUrl, getSource
 
 LCS = getSource('LCS')
