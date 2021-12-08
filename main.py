@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 import json
 import importlib
+import uvicorn
 
 from starlette.responses import FileResponse
 from utils import utils
@@ -69,3 +70,7 @@ async def chapter(source_id, manga_title, chapter_number):
     parser = importlib.import_module("sources.{}".format(source['id']))
 
     return parser.getChapter(manga_title, chapter_number)
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
