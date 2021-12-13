@@ -19,6 +19,8 @@
         "url": "https://www.frscan.cc/",
         "url_latests": "https://www.frscan.cc/",
         "url_manga": "https://www.frscan.cc/manga/{}",
+        "url_chapter": "https://www.frscan.cc/",
+        "url_search": "https://www.frscan.cc/",
         "active": true
     },
     {
