@@ -1,30 +1,36 @@
 [
     {
         "id": "RS",
+        "version": "1.0",
         "name": "Reaperscans",
         "img": "https://reaperscans.fr/wp-content/uploads/2021/06/ms-icon-310x310-1.png",
         "url": "https://reaperscans.fr/",
         "url_latests": "https://reaperscans.fr/manga/?order=update",
         "url_manga": "https://reaperscans.fr/manga/{}",
         "url_chapter": "https://reaperscans.fr/{}",
-        "url_search": "https://reaperscans.fr/"
+        "url_search": "https://reaperscans.fr/",
+        "active": false
     },
     {
         "id": "LSV",
+        "version": "1.0",
         "name": "LelScanVf",
         "img": "https://lelscan-vf.co/uploads/logo.png",
         "url": "https://www.lelscan-vf.co/",
         "url_latests": "https://www.lelscan-vf.co/",
-        "url_manga": "https://www.lelscan-vf.co/manga/{}"
+        "url_manga": "https://www.lelscan-vf.co/manga/{}",
+        "active": true
     },
     {
         "id": "LCS",
+        "version": "1.0",
         "name": "Le cercle du scan",
         "img": "https://lel.lecercleduscan.com/assets/images/logo_footer_night.png",
         "url": "https://lel.lecercleduscan.com/",
         "url_latests": "https://lel.lecercleduscan.com/",
         "url_manga": "https://lel.lecercleduscan.com/series/{}",
         "url_chapter": "https://lel.lecercleduscan.com/read/{}/fr/0/{}/page/1",
-        "url_search": "https://lel.lecercleduscan.com/search/"
+        "url_search": "https://lel.lecercleduscan.com/search/",
+        "active": true
     }
 ]
