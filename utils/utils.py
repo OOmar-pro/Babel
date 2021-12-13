@@ -5,7 +5,7 @@ def getSource(id):
     res =  json.load(f)
     f.close()
 
-    for source in res['sources']:
+    for source in res:
         if source['id'] == id:
             return source
     return None

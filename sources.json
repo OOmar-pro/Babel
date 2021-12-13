@@ -12,13 +12,13 @@
         "active": false
     },
     {
-        "id": "LSV",
+        "id": "FRS",
         "version": "1.0",
-        "name": "LelScanVf",
-        "img": "https://lelscan-vf.co/uploads/logo.png",
-        "url": "https://www.lelscan-vf.co/",
-        "url_latests": "https://www.lelscan-vf.co/",
-        "url_manga": "https://www.lelscan-vf.co/manga/{}",
+        "name": "FR Scan",
+        "img": "https://www.frscan.cc/uploads/favicon.png",
+        "url": "https://www.frscan.cc/",
+        "url_latests": "https://www.frscan.cc/",
+        "url_manga": "https://www.frscan.cc/manga/{}",
         "active": true
     },
     {
