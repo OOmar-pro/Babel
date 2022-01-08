@@ -45,7 +45,7 @@ def getManga(title):
                 "number": extractNumberFromText(chapter.find('a')['href']),
                 "title": chapter.find('em').text,
                 "url": chapter.find('a')['href'],
-                "date": chapter.find('div', class_='date-chapter-title-rtl').text
+                "date": sanitize(chapter.find('div', class_='date-chapter-title-rtl').text)
             })
 
     res = {
@@ -99,3 +99,6 @@ def search(query):
 
 def extractNumberFromText(text):
     return text.split('/')[-1]
+
+def sanitize(text):
+    return text.replace('\n', '')
