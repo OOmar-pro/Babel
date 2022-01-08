@@ -101,4 +101,4 @@ def extractNumberFromText(text):
     return text.split('/')[-1]
 
 def sanitize(text):
-    return text.replace('\n', '')
+    return text.replace('\n', '').strip()
