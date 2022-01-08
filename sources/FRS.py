@@ -4,7 +4,7 @@ import json
 
 from bs4 import BeautifulSoup
 from fastapi import HTTPException
-from utils.utils import encodeUrl, formatToUrl, getSource
+from utils.utils import encodeUrl, formatToUrl, getSource, sanitize
 
 FRS = getSource('FRS')
 
@@ -43,7 +43,7 @@ def getManga(title):
         if not 'btn' in chapter['class']:
             chapters.append({
                 "number": extractNumberFromText(chapter.find('a')['href']),
-                "title": chapter.find('em').text,
+                "title": sanitize(chapter.find('em').text),
                 "url": chapter.find('a')['href'],
                 "date": sanitize(chapter.find('div', class_='date-chapter-title-rtl').text)
             })
@@ -51,8 +51,8 @@ def getManga(title):
     res = {
         "metadata": {
             "img": manga.find('div', class_='boxed').find('img')['src'] ,
-            "title": manga.find('h2', class_='widget-title').text,
-            "description": manga.find('div', class_='well').find('p').text,
+            "title": sanitize(manga.find('h2', class_='widget-title').text),
+            "description": sanitize(manga.find('div', class_='well').find('p').text),
         },
         "chapters": chapters
 
@@ -91,7 +91,7 @@ def search(query):
     res = []
     for item in mangas:
         res.append({
-            "title": item['value'],
+            "title": sanitize(item['value']),
             "slug": item['data']
         })
 
@@ -99,6 +99,3 @@ def search(query):
 
 def extractNumberFromText(text):
     return text.split('/')[-1]
-
-def sanitize(text):
-    return text.replace('\n', '').strip()

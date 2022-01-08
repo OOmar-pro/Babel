@@ -4,7 +4,7 @@ import json
 
 from bs4 import BeautifulSoup
 from fastapi import HTTPException
-from utils.utils import formatToUrl, getSource
+from utils.utils import formatToUrl, getSource, sanitize
 
 LCS = getSource('LCS')
 
@@ -17,7 +17,7 @@ def getLatests():
     res = []
     for item in mangas:
         res.append({
-            "title": item.find('div', class_='title').find('a')['title'],
+            "title": sanitize(item.find('div', class_='title').find('a')['title']),
             "slug": formatToUrl(item.find('div', class_='title').find('a')['title']),
             "url": item.find('div', class_='title').find('a')['href'],
             "img": "" # TODO recuperer sur la page d'apres
@@ -42,16 +42,16 @@ def getManga(title):
     for chapter in chapters_html:
         chapters.append({
             "number": extractNumberFromText(chapter.find('div', class_='title').find('a').text),
-            "title": chapter.find('div', class_='title').find('a').text,
+            "title": sanitize(chapter.find('div', class_='title').find('a').text),
             "url": chapter.find('div', class_='title').find('a')['href'],
-            "date": extractDateFromText(chapter.find('div', class_='meta_r').text)
+            "date": sanitize(extractDateFromText(chapter.find('div', class_='meta_r').text))
         })
 
     res = {
         "metadata": {
             "img": manga.find('div', class_='thumbnail').find('img')['src'],
-            "title": manga.find('h1', class_='title').text,
-            "description": manga.find('div', class_='info').text,
+            "title": sanitize(manga.find('h1', class_='title').text),
+            "description": sanitize(manga.find('div', class_='info').text),
         },
         "chapters": chapters
 
@@ -85,7 +85,7 @@ def search(query):
     res = []
     for item in mangas:
         res.append({
-            "title": item.find('div', class_='title').find('a')['title'],
+            "title": sanitize(item.find('div', class_='title').find('a')['title']),
             "slug": formatToUrl(item.find('div', class_='title').find('a')['title']),
             "url": item.find('div', class_='title').find('a')['href'],
             "img": "" # TODO recuperer sur la page d'apres

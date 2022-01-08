@@ -20,3 +20,6 @@ def formatToUrl(str):
 def encodeUrl(url):
     """Returns the given HTML with ampersands, quotes and carets encoded."""
     return url.replace(' ', '+')
+
+def sanitize(text):
+    return text.replace('\n', '').strip()
