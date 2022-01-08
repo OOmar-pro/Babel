@@ -74,7 +74,7 @@ def getChapter(title, number):
         i += 1
         pages.append(page['url'])
 
-    return pages
+    return {"pages": pages}
 
 def search(query):
     r = requests.post(LCS['url_search'], data={"search": query})

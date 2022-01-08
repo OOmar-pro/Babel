@@ -80,7 +80,7 @@ def getChapter(title, number):
         url = 'https:' + url.strip()
         pages.append(url)
 
-    return pages
+    return {"pages": pages}
 
 def search(query):
     query = encodeUrl(query)
