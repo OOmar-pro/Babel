@@ -59,6 +59,22 @@ def getManga(title):
 
     return res
 
+def getImage(title):
+    title = formatToUrl(title)
+    url = LCS['url_manga'].format(title)
+    r = requests.get(url)
+    
+    if(r.status_code == 404):
+        raise HTTPException(status_code=404, detail="Manga not found")
+
+    html = BeautifulSoup(r.text, 'html.parser')
+
+    manga = html.find('div', class_='comic')
+
+    res = manga.find('div', class_='thumbnail').find('img')['src']
+
+    return res
+
 def getChapter(title, number):
     url = LCS['url_chapter'].format(formatToUrl(title), number)
     r = requests.get(url)

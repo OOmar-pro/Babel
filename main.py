@@ -61,6 +61,16 @@ async def manga(source_id,manga_title):
 
     return parser.getManga(manga_title)
 
+@app.get('/{source_id}/{manga_title}/image/')
+async def image_manga(source_id,manga_title):
+    source = utils.getSource(source_id)
+    if(source is None):
+        raise HTTPException(status_code=404, detail="Source not found.")
+    
+    parser = importlib.import_module("sources.{}".format(source['id']))
+
+    return parser.getImage(manga_title)
+
 @app.get('/{source_id}/{manga_title}/{chapter_number}')
 async def chapter(source_id, manga_title, chapter_number):
     source = utils.getSource(source_id)
