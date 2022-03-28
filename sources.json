@@ -21,7 +21,7 @@
         "url_manga": "https://www.frscan.cc/manga/{}",
         "url_chapter": "https://www.frscan.cc/manga/{}/{}",
         "url_search": "https://www.frscan.cc/search?query={}",
-        "active": true
+        "active": false
     },
     {
         "id": "LCS",
